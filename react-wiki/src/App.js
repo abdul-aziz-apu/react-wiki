@@ -5,12 +5,36 @@ import "bootstrap/dist/js/bootstrap";
 import './App.css';
 
 // import Search from "./components/Search/Search"
-// import Card from "./components/Card/Card";
+import Card from "./components/Card/Card";
 // import Pagination from "./components/Pagination/Pagination";
 // import Filter from "./components/Filter/Filter";
 // import Navbar from "./components/Navbar/Navbar"
 
 function App() {
+  /*
+    Backticks are template literal/interpolated string literal introduced in ECMA6Script. 
+    Compatible for multiple lines.
+  */
+  let api = `https://rickandmortyapi.com/api/character/?page=1`
+
+  let [fetchedData, updateFetchedData] = useState([]);
+
+  let { info, results } = fetchedData;
+
+
+  /*
+    useEffect Hook is used to retrieve data, it causes side effects, which is
+    to perform our effects after React has updated the DOM. It is a combination of 
+    React Lifecycle Hooks(componentDidMount, componentDidUpdate, componentWillUnmount)
+  */
+
+  useEffect(() => { (async function () {
+    let data = await fetch(api).then((res) => res.json());
+    updateFetchedData(data)
+  })(); }, [api]);
+
+
+
   return (
     <div className="App">
       <h1 className="text-center mb-3">Characters</h1>
@@ -21,7 +45,7 @@ function App() {
         <div className="col-lg-8 col-12">
           <div className="col-lg-8 col-12">
             <div className="row">
-              Card component will be placed here.
+              <Card results={results} />
             </div>
           </div>
         </div>
