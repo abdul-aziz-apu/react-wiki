@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import './App.css';
 
-// import Search from "./components/Search/Search"
+import Search from "./components/Search/Search"
 import Card from "./components/Card/Card";
 // import Pagination from "./components/Pagination/Pagination";
 // import Filter from "./components/Filter/Filter";
@@ -15,11 +15,19 @@ function App() {
     Backticks are template literal/interpolated string literal introduced in ECMA6Script. 
     Compatible for multiple lines.
   */
-  let api = `https://rickandmortyapi.com/api/character/?page=1`
+
+
 
   let [fetchedData, updateFetchedData] = useState([]);
 
   let { info, results } = fetchedData;
+
+  let [pageNumber, updatePageNumber] = useState(1);
+  let [search, setSearch] = useState("");
+
+   // let api = `https://rickandmortyapi.com/api/character/?page=1`
+
+   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
 
 
   /*
@@ -34,9 +42,11 @@ function App() {
   })(); }, [api]);
 
 
-
   return (
     <div className="App">
+      <h1 className="text-center mb-3">Search</h1>
+      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
+
       <h1 className="text-center mb-3">Characters</h1>
       <div className="container">
         <div className="row">
