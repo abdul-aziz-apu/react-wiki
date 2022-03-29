@@ -6,7 +6,7 @@ import './App.css';
 
 import Search from "./components/Search/Search"
 import Card from "./components/Card/Card";
-// import Pagination from "./components/Pagination/Pagination";
+import Pagination from "./components/Pagination/Pagination";
 // import Filter from "./components/Filter/Filter";
 // import Navbar from "./components/Navbar/Navbar"
 
@@ -52,6 +52,7 @@ function App() {
         <div className="row">
           Filter component will be placed here
         </div>
+
         <div className="col-lg-8 col-12">
           <div className="col-lg-8 col-12">
             <div className="row">
@@ -60,6 +61,12 @@ function App() {
           </div>
         </div>
       </div>
+
+      <Pagination 
+        info={info}
+        pageNumber={pageNumber}
+        updatePageNumber={updatePageNumber}
+        />
     </div>
   );
 }
