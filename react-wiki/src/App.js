@@ -7,7 +7,7 @@ import './App.css';
 import Search from "./components/Search/Search"
 import Card from "./components/Card/Card";
 import Pagination from "./components/Pagination/Pagination";
-// import Filter from "./components/Filter/Filter";
+import Filter from "./components/Filter/Filter";
 // import Navbar from "./components/Navbar/Navbar"
 
 function App() {
@@ -16,8 +16,6 @@ function App() {
     Compatible for multiple lines.
   */
 
-
-
   let [fetchedData, updateFetchedData] = useState([]);
 
   let { info, results } = fetchedData;
@@ -25,9 +23,13 @@ function App() {
   let [pageNumber, updatePageNumber] = useState(1);
   let [search, setSearch] = useState("");
 
+  let [status, updateStatus] = useState("");
+  let [gender, updateGender] = useState("");
+  let [species, updateSpecies] = useState("");
+
    // let api = `https://rickandmortyapi.com/api/character/?page=1`
 
-   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
+   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
 
 
   /*
@@ -65,6 +67,15 @@ function App() {
       <Pagination 
         info={info}
         pageNumber={pageNumber}
+        updatePageNumber={updatePageNumber}
+        />
+
+      <Filter
+        pageNumber={pageNumber}
+        status={status}
+        updateStatus={updateStatus}
+        updateGender={updateGender}
+        updateSpecies={updateSpecies}
         updatePageNumber={updatePageNumber}
         />
     </div>
